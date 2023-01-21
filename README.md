@@ -27,3 +27,16 @@ def read_wb_data(filename):
     df_years = df.drop(['Country Code','Indicator Name','Indicator Code'], axis=1)
     df_countries = df.drop(['Country Code','Indicator Name','Indicator Code','1960','1961','1962','1963','1964','1965','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021'], axis=1).transpose()
     return (df_years, df_countries)
+# years,countries = read_wb_data(filename)
+
+
+def data_plots(indicator_name):
+    """This function takes indicator name as argument, It plots the line plot for the dataframe and
+    returns the filtered dataframe for the indicator with given countries and years"""
+
+#     colors for lineplot
+    colors = ["black", "red", "blue", "green", "pink", "violet"]
+    if indicator_name == "CO2 emissions (kt)":
+        label = "kilo Tonns"
+    elif indicator_name == "Urban population growth (annual %)":
+        label = "Percentage (%)"
