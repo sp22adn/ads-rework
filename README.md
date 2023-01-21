@@ -53,3 +53,26 @@ def stats_plot():
     created_df = pd.DataFrame({"Years": years, "mean": data_series})
     created_df.set_index("Years").plot.bar(rot=0, title="Mean of CO2 emission" )
 
+# driver code for mean_stats function
+stats_plot()
+
+
+def correlation_plots(country_name):
+    """This function takes the Country Name as argument and cross compare
+    the correlations between different indicators of the Country and plot the heatmap"""
+
+    # filter the dataframe with given country name
+    country_data =df[df["Country Name"]==country_name].set_index("Indicator Name")
+
+    # extract the data for the given years and indicator names and transpose the dataframe
+    corr_data = country_data.loc[indicator_names, years].transpose()
+    
+    # plot the heatmap for the correlation between different indicators
+    plt.title(country_name)
+    sns.heatmap(corr_data.corr(), linecolor='white',
+                linewidths=0.1, annot=True, cmap="PuOr")
+    return corr_data
+
+
+correlation_plots("Bangladesh")
+correlation_plots("Russian Federation")
