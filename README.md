@@ -40,3 +40,16 @@ def data_plots(indicator_name):
         label = "kilo Tonns"
     elif indicator_name == "Urban population growth (annual %)":
         label = "Percentage (%)"
+# driver code for plotting_data function
+co2_data = data_plots(indicator_name="CO2 emissions (kt)")
+data_plots(indicator_name="Urban population growth (annual %)")
+
+def stats_plot():
+    """This function plots the bar graph for the mean of the CO2 emission with the help of
+    pandas statistical function mean()"""
+
+    data_series = co2_data.mean(numeric_only=True)
+    
+    created_df = pd.DataFrame({"Years": years, "mean": data_series})
+    created_df.set_index("Years").plot.bar(rot=0, title="Mean of CO2 emission" )
+
